@@ -1,6 +1,8 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
@@ -10,6 +12,7 @@ public class LoginTest extends BaseTest {
     public void correctLogin() {
         loginPage.openPage();
         loginPage.login(USERNAME, PASSWORD);
+        Assert.assertTrue(productsPage.isPageOpened());
     }
 
     @Test

@@ -1,6 +1,7 @@
 package tests;
 
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 import static pages.CheckoutPage.CANCEL_BUTTON;
 
@@ -11,6 +12,7 @@ public class CheckoutTest extends BaseTest {
     public void correctData() {
         checkoutPage.openPage();
         checkoutPage.fillInformation(FIRSTNAME, LASTNAME, ZIP);
+        assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/checkout-step-two.html");
     }
 
     @Test

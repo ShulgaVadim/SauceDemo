@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class CheckoutPage extends BasePage {
@@ -14,12 +14,14 @@ public class CheckoutPage extends BasePage {
     public static final By ERROR_MESSAGE = By.cssSelector("[data-test=error]");
     public static final By CANCEL_BUTTON = By.cssSelector(".cart_cancel_link");
 
+
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
 
     public void openPage() {
         driver.get("https://www.saucedemo.com/checkout-step-one.html");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRSTNAME_INPUT));
     }
 
     public void fillInformation(String firstname, String lastname, String zip) {
@@ -33,8 +35,6 @@ public class CheckoutPage extends BasePage {
     public String getErrorMessageOnCheckoutPage() {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
-
-
 
 
 }

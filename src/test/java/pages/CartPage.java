@@ -21,8 +21,8 @@ public class CartPage extends BasePage {
         driver.get("https://www.saucedemo.com/cart.html");
     }
 
-    public void productShouldBeIntheList(String productName) {
-        System.out.println(driver.findElement(By.xpath(String.format(productLocator, productName))).isDisplayed());
+    public boolean productShouldBeIntheList(String productName) {
+        return driver.findElement(By.xpath(String.format(productLocator, productName))).isDisplayed();
     }
 
 
