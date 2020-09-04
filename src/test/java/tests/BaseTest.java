@@ -2,12 +2,10 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.CartPage;
-import pages.CheckoutPage;
-import pages.LoginPage;
-import pages.ProductsPage;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,9 +18,12 @@ public class BaseTest {
 
     WebDriver driver;
     LoginPage loginPage;
+    LoginPageFactory loginPageFactory;
     ProductsPage productsPage;
     CheckoutPage checkoutPage;
+    CheckoutStepTwoPage checkoutStepTwoPage;
     CartPage cartPage;
+    MenuPage menuPage;
 
 
     @BeforeMethod
@@ -32,9 +33,12 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
+        loginPageFactory = new LoginPageFactory(driver);
         productsPage = new ProductsPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        checkoutStepTwoPage = new CheckoutStepTwoPage(driver);
         cartPage = new CartPage(driver);
+        menuPage = new MenuPage(driver);
     }
 
 
@@ -42,5 +46,6 @@ public class BaseTest {
     public void closeBrowser() {
         driver.quit();
     }
+
 
 }

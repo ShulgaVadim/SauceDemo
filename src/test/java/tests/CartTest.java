@@ -4,31 +4,31 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static pages.CartPage.CHECKOUT_BUTTON;
-import static pages.CartPage.CONTINUE_SHOPPING_BUTTON;
+
 
 public class CartTest extends BaseTest {
 
     //Проверка добавления товара в корзину
     @Test
     public void productShouldBeAddedIntoCart() {
-        loginPage.openPage();
-        loginPage.login(USERNAME, PASSWORD);
-        productsPage.addProduct("Sauce Labs Bike Light");
-        cartPage.openPage();
-        assertTrue(cartPage.productShouldBeIntheList("Sauce Labs Bike Light"));
+        loginPage
+                .openPage()
+                .login(USERNAME, PASSWORD)
+                .addProduct("Sauce Labs Bike Light");
+        cartPage.openPage()
+                .productShouldBeIntheList("Sauce Labs Bike Light");
     }
 
     //Удаление товара из корзины
     @Test
     public void productShouldBeRemovedFromTheCart() {
-        loginPage.openPage();
-        loginPage.login(USERNAME, PASSWORD);
-        productsPage.addProduct("Sauce Labs Bike Light");
-        productsPage.addProduct("Sauce Labs Backpack");
-        cartPage.openPage();
-        cartPage.removeProduct("Sauce Labs Bike Light");
+        loginPage
+                .openPage()
+                .login(USERNAME, PASSWORD)
+                .addProduct("Sauce Labs Bike Light")
+                .addProduct("Sauce Labs Backpack");
+        cartPage.openPage()
+                .removeProduct("Sauce Labs Bike Light");
         assertEquals(driver.findElements(By.cssSelector(".inventory_item_name")).size(), 1);
 
     }
@@ -36,17 +36,19 @@ public class CartTest extends BaseTest {
     //Проверка кнопки CHECKOUT
     @Test
     public void checkCheckoutButton() {
-        cartPage.openPage();
-        driver.findElement(CHECKOUT_BUTTON).click();
-        assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/checkout-step-one.html");
+        cartPage
+                .openPage()
+                .clickCheckoutButton()
+                .compareURL("https://www.saucedemo.com/checkout-step-one.html");
     }
 
     //Проверка кнопки CONTINUE SHOPPING
     @Test
     public void checkContinueShoppingButton() {
-        cartPage.openPage();
-        driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
-        assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+        cartPage
+                .openPage()
+                .clickContinueShoppingButton()
+                .compareURL("https://www.saucedemo.com/inventory.html");
     }
 
 }

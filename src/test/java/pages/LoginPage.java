@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+
 
 public class LoginPage extends BasePage {
 
@@ -16,19 +18,32 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
-        driver.get("https://www.saucedemo.com/");
+    public LoginPage isPageOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
+        return this;
     }
 
-    public void login(String username, String password) {
+    public LoginPage openPage() {
+        driver.get("https://www.saucedemo.com/");
+        isPageOpened();
+        return this;
+    }
+
+    public ProductsPage login(String username, String password) {
+        loginWithoutRedirect(username, password);
+        return new ProductsPage(driver);
+    }
+
+    public LoginPage loginWithoutRedirect(String username, String password) {
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
+        return this;
     }
 
-    public String getErrorMessage() {
-        return driver.findElement(ERROR_LABEL).getText();
+    public LoginPage getErrorMessage(String errorMessage) {
+        Assert.assertEquals(driver.findElement(ERROR_LABEL).getText(), errorMessage);
+        return this;
     }
 }
 

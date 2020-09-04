@@ -1,41 +1,44 @@
 package tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
 
     @Test
     public void correctLogin() {
-        loginPage.openPage();
-        loginPage.login(USERNAME, PASSWORD);
-        Assert.assertTrue(productsPage.isPageOpened());
+        loginPage
+                .openPage()
+                .login(USERNAME, PASSWORD);
+        productsPage.isPageOpened();
     }
 
     @Test
     public void EmptyLogin() {
-        loginPage.openPage();
-        loginPage.login("", PASSWORD);
-        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username is required");
+        loginPage
+                .openPage()
+                .loginWithoutRedirect("", PASSWORD)
+                .getErrorMessage("Epic sadface: Username is required")
+                .isPageOpened();
     }
 
     @Test
     public void EmptyPassword() {
-        loginPage.openPage();
-        loginPage.login(USERNAME, "");
-        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Password is required");
+        loginPage
+                .openPage()
+                .loginWithoutRedirect(USERNAME, "")
+                .getErrorMessage("Epic sadface: Password is required")
+                .isPageOpened();
     }
 
     @Test
     public void IncorrectCreds() {
-        loginPage.openPage();
-        loginPage.login("qwer", "123");
-        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username and password do not match any user in this service");
+        loginPage
+                .openPage()
+                .loginWithoutRedirect("qwer", "123")
+                .getErrorMessage("Epic sadface: Username and password do not match any user in this service")
+                .isPageOpened();
     }
-
 
 }
 
