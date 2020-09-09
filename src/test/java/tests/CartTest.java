@@ -14,9 +14,9 @@ public class CartTest extends BaseTest {
         loginPage
                 .openPage()
                 .login(USERNAME, PASSWORD)
-                .addProduct("Sauce Labs Bike Light");
+                .addProduct(System.getProperty("product"));
         cartPage.openPage()
-                .productShouldBeIntheList("Sauce Labs Bike Light");
+                .productShouldBeIntheList(System.getProperty("product"));
     }
 
     //Удаление товара из корзины
