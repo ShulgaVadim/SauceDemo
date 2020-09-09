@@ -20,7 +20,7 @@
     
     [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.909 s - in tests.LoginTest
 
-4. mvn -f pom_2.xml clean test -DsuiteXmlFile=src/test/resources/Calculator.xml
+4. mvn -f pom_2.xml clean test -DsuiteXmlFile=src/test/resources/Saucedemo.xml
 
     [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 38.815 s - in TestSuite
 
