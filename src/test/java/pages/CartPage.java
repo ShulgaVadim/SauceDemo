@@ -3,6 +3,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 
 public class CartPage extends BasePage {
@@ -16,18 +18,42 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
+    public CartPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
+        return this;
+    }
 
-    public void openPage() {
+
+    public CartPage openPage() {
         driver.get("https://www.saucedemo.com/cart.html");
+        isPageOpened();
+        return this;
     }
 
-    public boolean productShouldBeIntheList(String productName) {
-        return driver.findElement(By.xpath(String.format(productLocator, productName))).isDisplayed();
+    public CartPage productShouldBeIntheList(String productName) {
+        driver.findElement(By.xpath(String.format(productLocator, productName))).isDisplayed();
+        return this;
     }
 
 
-    public void removeProduct(String productName) {
+    public CartPage removeProduct(String productName) {
         driver.findElement(By.xpath(String.format(removeButtonLocator, productName))).click();
+        return this;
+    }
+
+    public ProductsPage clickContinueShoppingButton() {
+        driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
+        return new ProductsPage(driver);
+    }
+
+    public CheckoutPage clickCheckoutButton() {
+        driver.findElement(CHECKOUT_BUTTON).click();
+        return new CheckoutPage(driver);
+    }
+
+    public CartPage checkCart(int quantity) {
+        Assert.assertEquals(driver.findElements(By.cssSelector(".cart_item_label")).size(), quantity);
+        return this;
     }
 
 }

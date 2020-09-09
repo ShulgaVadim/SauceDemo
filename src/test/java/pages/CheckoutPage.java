@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 
 public class CheckoutPage extends BasePage {
@@ -19,22 +20,46 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
-        driver.get("https://www.saucedemo.com/checkout-step-one.html");
+    public CheckoutPage isPageOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(FIRSTNAME_INPUT));
+        return this;
     }
 
-    public void fillInformation(String firstname, String lastname, String zip) {
+    public CheckoutPage openPage() {
+        driver.get("https://www.saucedemo.com/checkout-step-one.html");
+        isPageOpened();
+        return this;
+    }
+
+    public CheckoutStepTwoPage fillInformation(String firstname, String lastname, String zip) {
+        fillIncorrrectData(firstname, lastname, zip);
+        return new CheckoutStepTwoPage(driver);
+
+    }
+
+    public CheckoutPage fillIncorrrectData(String firstname, String lastname, String zip) {
 
         driver.findElement(FIRSTNAME_INPUT).sendKeys(firstname);
         driver.findElement(LASTNAME_INPUT).sendKeys(lastname);
         driver.findElement(ZIP_INPUT).sendKeys(zip);
+        clickContinueButon();
+        return this;
+    }
+
+    public CheckoutPage getErrorMessageOnCheckoutPage(String errorMessage) {
+        Assert.assertEquals(driver.findElement(ERROR_MESSAGE).getText(), errorMessage);
+        return this;
+    }
+
+    public CheckoutStepTwoPage clickContinueButon() {
         driver.findElement(CONTINUE_BUTTON).click();
+        return new CheckoutStepTwoPage(driver);
     }
 
-    public String getErrorMessageOnCheckoutPage() {
-        return driver.findElement(ERROR_MESSAGE).getText();
-    }
 
+    public CartPage clickCancelButton() {
+        driver.findElement(CANCEL_BUTTON).click();
+        return new CartPage(driver);
+    }
 
 }
