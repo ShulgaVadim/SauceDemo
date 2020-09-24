@@ -1,11 +1,13 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
 
-    @Test
+    @Test(description = "Tect на логин")
+    @Description("Логин использует стандартные креды")
     public void correctLogin() {
         loginPage
                 .openPage()
@@ -14,6 +16,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка сообщения об ошибке при пустом поле Username")
     public void EmptyLogin() {
         loginPage
                 .openPage()
@@ -23,6 +26,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка сообщения об ошибке при пустом поле Password")
     public void EmptyPassword() {
         loginPage
                 .openPage()
@@ -32,6 +36,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка сообщения об ошибке при вводе некорректных данных")
     public void IncorrectCreds() {
         loginPage
                 .openPage()
@@ -39,7 +44,6 @@ public class LoginTest extends BaseTest {
                 .getErrorMessage("Epic sadface: Username and password do not match any user in this service")
                 .isPageOpened();
     }
-
 }
 
 

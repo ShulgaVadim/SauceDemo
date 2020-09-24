@@ -1,5 +1,6 @@
 package tests;
 
+import jdk.jfr.Description;
 import org.testng.annotations.Test;
 
 
@@ -7,6 +8,7 @@ public class CheckoutTest extends BaseTest {
 
 
     @Test
+    @Description("Логин с корректными данными")
     public void correctData() {
         checkoutPage
                 .openPage()
@@ -15,6 +17,7 @@ public class CheckoutTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка сообщения об ошибке при пустом поле FirstName")
     public void EmptyFirstName() {
         checkoutPage
                 .openPage()
@@ -24,6 +27,7 @@ public class CheckoutTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка сообщения об ошибке при пустом поле LastName")
     public void EmptyLastName() {
         checkoutPage
                 .openPage()
@@ -33,6 +37,7 @@ public class CheckoutTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка сообщения об ошибке при пустом поле ZIP")
     public void EmptyZIP() {
         checkoutPage
                 .openPage()
@@ -41,8 +46,8 @@ public class CheckoutTest extends BaseTest {
                 .isPageOpened();
     }
 
-    //Проверка кнопки CANCEL
     @Test
+    @Description("Проверка кнопки CANCEL")
     public void checkCancelButton() {
         checkoutPage
                 .openPage()
@@ -50,8 +55,8 @@ public class CheckoutTest extends BaseTest {
                 .compareURL("https://www.saucedemo.com/cart.html");
     }
 
-    //Проверка кнопки CONTINUE
     @Test
+    @Description("Проверка кнопки Continue")
     public void checkContinueButton() {
         checkoutPage
                 .openPage()

@@ -1,5 +1,6 @@
 package tests;
 
+import jdk.jfr.Description;
 import org.openqa.selenium.ElementClickInterceptedException;
 
 import org.testng.annotations.Test;
@@ -8,6 +9,7 @@ import org.testng.annotations.Test;
 public class MenuTest extends BaseTest {
 
     @Test
+    @Description("Проверка нажатия на кнопку All Items")
     public void allItemsTest() {
         loginPage
                 .openPage()
@@ -18,6 +20,7 @@ public class MenuTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка нажатия на кнопку About")
     public void aboutItemTest() {
         loginPage
                 .openPage()
@@ -28,6 +31,7 @@ public class MenuTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка нажатия на кнопку Logout")
     public void logoutItemtest() {
         loginPage
                 .openPage()
@@ -38,6 +42,7 @@ public class MenuTest extends BaseTest {
     }
 
     @Test
+    @Description("Проверка нажатия на кнопку Reset")
     public void resetItemTest() throws ElementClickInterceptedException {
         loginPage
                 .openPage()

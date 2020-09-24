@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -8,19 +9,20 @@ import static org.testng.Assert.assertEquals;
 
 public class CartTest extends BaseTest {
 
-    //Проверка добавления товара в корзину
+
     @Test
+    @Description("Проверка добавления товара в корзину")
     public void productShouldBeAddedIntoCart() {
         loginPage
                 .openPage()
                 .login(USERNAME, PASSWORD)
-                .addProduct(System.getProperty("product"));
+                .addProduct("Sauce Labs Bike Light");
         cartPage.openPage()
-                .productShouldBeIntheList(System.getProperty("product"));
+                .productShouldBeIntheList("Sauce Labs Bike Light");
     }
 
-    //Удаление товара из корзины
     @Test
+    @Description("Проверка удаления товара из корзины")
     public void productShouldBeRemovedFromTheCart() {
         loginPage
                 .openPage()
@@ -33,8 +35,8 @@ public class CartTest extends BaseTest {
 
     }
 
-    //Проверка кнопки CHECKOUT
     @Test
+    @Description("Проверка кнопки CHECKOUT")
     public void checkCheckoutButton() {
         cartPage
                 .openPage()
@@ -42,8 +44,8 @@ public class CartTest extends BaseTest {
                 .compareURL("https://www.saucedemo.com/checkout-step-one.html");
     }
 
-    //Проверка кнопки CONTINUE SHOPPING
     @Test
+    @Description("Проверка кнопки CONTINUE SHOPPING")
     public void checkContinueShoppingButton() {
         cartPage
                 .openPage()
