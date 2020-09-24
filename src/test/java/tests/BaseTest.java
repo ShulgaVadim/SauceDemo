@@ -19,7 +19,6 @@ public class BaseTest {
 
     WebDriver driver;
     LoginPage loginPage;
-    LoginPageFactory loginPageFactory;
     ProductsPage productsPage;
     CheckoutPage checkoutPage;
     CheckoutStepTwoPage checkoutStepTwoPage;
@@ -34,7 +33,6 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
-        loginPageFactory = new LoginPageFactory(driver);
         productsPage = new ProductsPage(driver);
         checkoutPage = new CheckoutPage(driver);
         checkoutStepTwoPage = new CheckoutStepTwoPage(driver);
