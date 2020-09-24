@@ -1,6 +1,6 @@
 package tests;
 
-import jdk.jfr.Description;
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
 

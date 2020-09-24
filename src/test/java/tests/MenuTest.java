@@ -1,6 +1,7 @@
 package tests;
 
-import jdk.jfr.Description;
+
+import io.qameta.allure.Description;
 import org.openqa.selenium.ElementClickInterceptedException;
 
 import org.testng.annotations.Test;
