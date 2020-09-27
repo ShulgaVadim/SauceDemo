@@ -1,11 +1,12 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-
+    @Step("Login")
     @Test(description = "Tect на логин")
     @Description("Логин использует стандартные креды")
     public void correctLogin() {
