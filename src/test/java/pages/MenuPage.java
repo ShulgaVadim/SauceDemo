@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.awt.image.RescaleOp;
+
 public class MenuPage extends BasePage {
 
     public static final By OPEN_ITEM = By.cssSelector(".bm-burger-button");
@@ -30,25 +32,30 @@ public class MenuPage extends BasePage {
 
     public MenuPage openMenu() {
         driver.findElement(OPEN_ITEM).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ALL_ITEMS));
         return this;
     }
 
     public MenuPage allItemsClick() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ALL_ITEMS));
         driver.findElement(ALL_ITEMS).click();
         return this;
     }
 
     public MenuPage aboutClick() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ABOUT_ITEM));
         driver.findElement(ABOUT_ITEM).click();
         return this;
     }
 
     public LoginPage logOutClick() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGOUT_ITEM));
         driver.findElement(LOGOUT_ITEM).click();
         return new LoginPage(driver);
     }
 
     public MenuPage resetClick() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(RESET_ITEM));
         driver.findElement(RESET_ITEM).click();
         return this;
     }
