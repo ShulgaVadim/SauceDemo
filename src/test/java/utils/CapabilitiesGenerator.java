@@ -14,11 +14,11 @@ public class CapabilitiesGenerator {
         String driverPath = "src/test/resources/webdrivers";
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver73.exe");
+            System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver.exe");
         } else if (os.contains("mac")) {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver73");
+            System.setProperty("webdriver.chrome.driver", driverPath + "/chromedriver");
         } else {
-            System.setProperty("webdriver.chrome.driver", driverPath + "/linux/chromedriver73");
+            System.setProperty("webdriver.chrome.driver", driverPath + "/linux/chromedriver");
         }
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
